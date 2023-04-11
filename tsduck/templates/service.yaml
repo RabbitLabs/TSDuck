@@ -8,7 +8,7 @@ spec:
   type: {{ .Values.service.type }}
   ports:
   {{- range $port := .Values.ports }}
-  - name: {{ printf "input-%d" $port }}
+  - name: in-{{ $port }}
     port: {{ $port }}
     targetPort: {{ $port }}
     protocol: TCP

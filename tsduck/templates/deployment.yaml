@@ -32,9 +32,9 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             {{- range $port := .Values.ports }}
-            - name: {{ printf "input-%d" $port }}
-              containerPort: {{ $port }}
-              protocol: TCP
+          - name: in-{{ $port }}
+            containerPort: {{ $port }}
+            protocol: TCP
             {{- end }}
           volumeMounts:
           - name: {{ .Chart.Name }}-config
