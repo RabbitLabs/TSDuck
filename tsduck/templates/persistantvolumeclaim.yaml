@@ -1,0 +1,18 @@
+{{ if .Values.persistance.enable -}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "tsduck.fullname" . }}-data-volume
+  labels:
+    {{- include "tsduck.labels" . | nindent 4 }}  
+spec:
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: {{ .Values.persistance.size }}
+  accessModes:
+    - ReadWriteOnce
+  {{if .Values.persistance.storageClass -}}
+  storageClassName: {{ .Values.persistance.storageClass }}
+  {{- end}}
+{{- end}}
