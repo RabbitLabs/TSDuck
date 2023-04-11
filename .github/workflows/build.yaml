@@ -14,5 +14,5 @@ jobs:
     - name: Publish Helm charts
       uses: stefanprodan/helm-gh-pages@master
       with:
-        token: ${{ secrets.PÜBLISH_TOKEN }} 
+        token: ${{ secrets.PUBLISH_TOKEN }} 
         charts_dir: tsduck       
