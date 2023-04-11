@@ -15,4 +15,4 @@ jobs:
       uses: stefanprodan/helm-gh-pages@master
       with:
         token: ${{ secrets.PUBLISH_TOKEN }} 
-        charts_dir: tsduck       
+        charts_dir: .       
