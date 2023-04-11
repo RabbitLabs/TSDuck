@@ -30,12 +30,14 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if len .Values.ports }}
           ports:
             {{- range $port := .Values.ports }}
           - name: in-{{ $port }}
             containerPort: {{ $port }}
             protocol: TCP
             {{- end }}
+          {{- end }}
           volumeMounts:
           - name: {{ .Chart.Name }}-config
             mountPath: "/autorun"
