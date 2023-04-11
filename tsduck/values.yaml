@@ -8,7 +8,7 @@ image:
   repository: rabbitlabs/tsduck
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -32,6 +32,9 @@ autorun:
     #!/usr/bin/env bash
     tsp -I ip 5000 -O ip target:5000
 
+ports:
+  - 5000
+  
 persistance:
   enable: yes
   size: 2Gi

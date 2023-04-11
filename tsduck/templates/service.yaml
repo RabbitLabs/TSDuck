@@ -7,9 +7,11 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
+  {{- range $port := .Values.ports }}
+  - name: {{ printf "input-%d" $port }}
+    port: {{ $port }}
+    targetPort: {{ $port }}
+    protocol: TCP
+  {{- end }}  
   selector:
     {{- include "tsduck.selectorLabels" . | nindent 4 }}

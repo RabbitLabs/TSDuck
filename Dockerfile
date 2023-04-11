@@ -16,6 +16,7 @@ RUN wget https://github.com/tsduck/tsduck/releases/download/v3.33-3139/tsduck_3.
 RUN dpkg -i tsduck_3.33-3139.ubuntu22_amd64.deb
 RUN mkdir /data /autorun
 COPY ./run.sh /run.sh
+RUN chmod +x /run.sh
 CMD ["/run.sh"]
 # expose range of ports for incoming streams
 EXPOSE 5000-5100

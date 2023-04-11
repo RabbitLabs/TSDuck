@@ -31,9 +31,11 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - name: http
-              containerPort: 80
+            {{- range $port := .Values.ports }}
+            - name: {{ printf "input-%d" $port }}
+              containerPort: {{ $port }}
               protocol: TCP
+            {{- end }}
           volumeMounts:
           - name: {{ .Chart.Name }}-config
             mountPath: "/autorun"
